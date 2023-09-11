@@ -11,18 +11,7 @@ namespace CSharpASP_Basic
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (ReadCookie() > 15)
-            {
-                //เปลี่ยนหน้า
-                Response.Redirect("Member.aspx");
-
-                //Redirect ผ่าน Server
-                //Server.Transfer("Member.aspx");
-            }
-            else
-            {
-                Response.Write("Error");
-            }
+            CheckAge(int.Parse(Request.Cookies["UserSetting"].Value));
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -33,10 +22,14 @@ namespace CSharpASP_Basic
             int years = DateTime.Now.Year;
             //นำ years มาลบกับ Text
             int age = years - int.Parse(TextBox1.Text);
-
             WriteCooke(age);
+            CheckAge(int.Parse(Request.Cookies["UserSetting"].Value));
 
-            if (ReadCookie() > 15)
+        }
+
+        private void CheckAge(int age)
+        {
+            if (age > 15)
             {
                 //เปลี่ยนหน้า
                 Response.Redirect("Member.aspx");
