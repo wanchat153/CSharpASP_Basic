@@ -13,5 +13,10 @@ namespace CSharpASP_Basic
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Label1.Text = "Home";
+        }
     }
 }
