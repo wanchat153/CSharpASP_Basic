@@ -25,7 +25,10 @@ namespace CSharpASP_Basic
             if (age > 15)
             {
                 //เปลี่ยนหน้า
-                Response.Redirect("Member.aspx");
+                //Response.Redirect("Member.aspx");
+
+                //Redirect ผ่าน Server
+                Server.Transfer("Member.aspx");
             }
             else
             {
