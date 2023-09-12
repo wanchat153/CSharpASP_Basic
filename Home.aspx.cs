@@ -12,7 +12,10 @@ namespace CSharpASP_Basic
         protected void Page_Load(object sender, EventArgs e)
         {
             //CheckAge(int.Parse(Request.Cookies["UserSetting"].Value));
-            CheckAge(ReadSession());
+            //CheckAge(ReadSession());
+
+            int age = int.Parse(Request.Cookies["UserSetting"].Value);
+            CheckAge(age);
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -23,10 +26,10 @@ namespace CSharpASP_Basic
             int years = DateTime.Now.Year;
             //นำ years มาลบกับ Text
             int age = years - int.Parse(TextBox1.Text);
-            //WriteCooke(age);
-            WriteSession(age);
+            WriteCooke(age);
+            //WriteSession(age);
             CheckAge(int.Parse(Request.Cookies["UserSetting"].Value));
-
+            //CheckAge(ReadSession());
         }
 
         private void CheckAge(int age)
@@ -45,19 +48,19 @@ namespace CSharpASP_Basic
             }
         }
 
-        private void WriteSession(int age)
-        {
-            Session["userAge"] = age;
-        }
+        //private void WriteSession(int age)
+        //{
+        //    Session["userAge"] = age;
+        //}
 
-        private int ReadSession()
-        {
-            if (Session["userAge"] == null)
-            {
-                return 0;
-            }
-            return int.Parse(Session["userAge"].ToString());
-        }
+        //private int ReadSession()
+        //{
+        //    if (Session["userAge"] == null)
+        //    {
+        //        return 0;
+        //    }
+        //    return int.Parse(Session["userAge"].ToString());
+        //}
         private void WriteCooke(object age)
         {
             HttpCookie userCookie = new HttpCookie("UserSetting");
